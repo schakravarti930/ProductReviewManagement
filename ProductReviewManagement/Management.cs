@@ -39,5 +39,14 @@ namespace ProductReviewManagement
                 Console.WriteLine(list.ProductId + " " + list.Count);
             }
         }
+        public void RetrieveProductIDAndReviews(List<ProductReview> listProductReview)
+        {
+            var recordedData = from productReview in listProductReview
+                               select new { productReview.ProductID, productReview.Review };
+            foreach(var list in recordedData)
+            {
+                Console.WriteLine(list.ProductID + " " + list.Review);
+            }
+        }
     }
 }
