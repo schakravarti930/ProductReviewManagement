@@ -29,5 +29,15 @@ namespace ProductReviewManagement
                 Console.WriteLine(list.ToString());
             }
         }
+        public void RetrieveCountOfRecords(List<ProductReview> listProductReview)
+        {
+            var recordedData = from productReview in listProductReview
+                               group productReview by productReview.ProductID into g
+                               select new { ProductId = g.Key, Count = g.Count() };
+            foreach(var list in recordedData)
+            {
+                Console.WriteLine(list.ProductId + " " + list.Count);
+            }
+        }
     }
 }
