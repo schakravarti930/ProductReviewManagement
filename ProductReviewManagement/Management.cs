@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Data;
 using System.Linq;
 
@@ -53,6 +54,14 @@ namespace ProductReviewManagement
             foreach(var list in recordedData)
             {
                 Console.WriteLine(list.ToString());
+            }
+        }
+        public void SelectProductIDAndReviews(List<ProductReview> listProductReview)
+        {
+            var recordedData = listProductReview.Select(x => new { x.ProductID, x.Review });
+            foreach(var list in recordedData)
+            {
+                Console.WriteLine(list.ProductID + " " + list.Review);
             }
         }
     }

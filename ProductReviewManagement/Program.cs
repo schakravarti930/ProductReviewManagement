@@ -26,7 +26,8 @@ namespace ProductReviewManagement
             //management.SelectedRecords(productReviewList);
             //management.RetrieveCountOfRecords(productReviewList);
             //management.RetrieveProductIDAndReviews(productReviewList);
-            management.SkipTop5Records(productReviewList);
+            //management.SkipTop5Records(productReviewList);
+            management.SelectProductIDAndReviews(productReviewList);
         }
     }
 }
