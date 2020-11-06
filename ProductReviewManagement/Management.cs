@@ -9,23 +9,45 @@ namespace ProductReviewManagement
     class Management
     {
         public readonly DataTable dataTable = new DataTable();
+        public Management()
+        {
+            //Creating Columns of the DataTable
+            dataTable.Columns.Add("ProductID");
+            dataTable.Columns.Add("UserID");
+            dataTable.Columns.Add("Rating");
+            dataTable.Columns.Add("Review");
+            dataTable.Columns.Add("isLike");
+
+            //Inserting Data into the Table
+            dataTable.Rows.Add(1, 1, 2d, "Good", true);
+            dataTable.Rows.Add(2,1, 4d, "Good", true);
+            dataTable.Rows.Add(3,1, 5d, "Good", true);
+            dataTable.Rows.Add(4,1, 6d, "Good", false);
+            dataTable.Rows.Add(5,1, 2d, "nice", true);
+            dataTable.Rows.Add(6,1, 1d, "bas", true);
+            dataTable.Rows.Add(8,1, 1d, "Good", false);
+            dataTable.Rows.Add(8,1, 9d, "nice", true);
+            dataTable.Rows.Add(2,1, 10d, "nice", true);
+            dataTable.Rows.Add(10,1, 8d, "nice", true);
+            dataTable.Rows.Add(11,1, 3d, "nice", true);
+        }
         public void TopRecords(List<ProductReview> listProductReview)
         {
             var recordedData = (from productReview in listProductReview
                                 orderby productReview.Rating descending
                                 select productReview).Take(3);
-            foreach(var list in recordedData)
+            foreach (var list in recordedData)
             {
                 Console.WriteLine(list.ToString());
             }
         }
         public void SelectedRecords(List<ProductReview> listProductReview)
         {
-            var recordedData =  from productReview in listProductReview
-                                where (productReview.ProductID == 1 || productReview.ProductID == 4 || productReview.ProductID == 9)
-                                && productReview.Rating > 3
-                                select productReview;
-            foreach(var list in recordedData)
+            var recordedData = from productReview in listProductReview
+                               where (productReview.ProductID == 1 || productReview.ProductID == 4 || productReview.ProductID == 9)
+                               && productReview.Rating > 3
+                               select productReview;
+            foreach (var list in recordedData)
             {
                 Console.WriteLine(list.ToString());
             }
@@ -42,7 +64,7 @@ namespace ProductReviewManagement
         {
             var recordedData = from productReview in listProductReview
                                select new { productReview.ProductID, productReview.Review };
-            foreach(var list in recordedData)
+            foreach (var list in recordedData)
             {
                 Console.WriteLine(list.ProductID + " " + list.Review);
             }
@@ -51,7 +73,7 @@ namespace ProductReviewManagement
         {
             var recordedData = (from productReview in listProductReview
                                 select productReview).Skip(5);
-            foreach(var list in recordedData)
+            foreach (var list in recordedData)
             {
                 Console.WriteLine(list.ToString());
             }
@@ -59,7 +81,7 @@ namespace ProductReviewManagement
         public void SelectProductIDAndReviews(List<ProductReview> listProductReview)
         {
             var recordedData = listProductReview.Select(x => new { x.ProductID, x.Review });
-            foreach(var list in recordedData)
+            foreach (var list in recordedData)
             {
                 Console.WriteLine(list.ProductID + " " + list.Review);
             }
