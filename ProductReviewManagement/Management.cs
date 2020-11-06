@@ -12,11 +12,11 @@ namespace ProductReviewManagement
         public Management()
         {
             //Creating Columns of the DataTable
-            dataTable.Columns.Add("ProductID");
-            dataTable.Columns.Add("UserID");
-            dataTable.Columns.Add("Rating");
-            dataTable.Columns.Add("Review");
-            dataTable.Columns.Add("isLike");
+            dataTable.Columns.Add("ProductID",typeof(int));
+            dataTable.Columns.Add("UserID",typeof(int));
+            dataTable.Columns.Add("Rating",typeof(double));
+            dataTable.Columns.Add("Review",typeof(string));
+            dataTable.Columns.Add("isLike",typeof(bool));
 
             //Inserting Data into the Table
             dataTable.Rows.Add(1, 1, 2d, "Good", true);
@@ -84,6 +84,16 @@ namespace ProductReviewManagement
             foreach (var list in recordedData)
             {
                 Console.WriteLine(list.ProductID + " " + list.Review);
+            }
+        }
+        public void RetrieveTrueIsLike()
+        {
+            var Data = from reviews in dataTable.AsEnumerable()
+                       where reviews.Field<bool>("isLike").Equals(true)
+                       select reviews;
+            foreach(var dataItem in Data)
+            {
+                Console.WriteLine($"ProductID- {dataItem.ItemArray[0]} UserID- {dataItem.ItemArray[1]} Rating- {dataItem.ItemArray[2]} Review- {dataItem.ItemArray[3]} isLike- {dataItem.ItemArray[4]}");
             }
         }
     }
