@@ -29,7 +29,8 @@ namespace ProductReviewManagement
             //management.SkipTop5Records(productReviewList);
             //management.SelectProductIDAndReviews(productReviewList);
             //management.RetrieveTrueIsLike();
-            management.AverageRatingByProductID();
+            //management.AverageRatingByProductID();
+            management.NiceReviews();
         }
     }
 }
